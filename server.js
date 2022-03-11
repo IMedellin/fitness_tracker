@@ -1,29 +1,34 @@
 const express = require('express');
+const pg = require('pg');
 const { Pool } = require('pg');
 require("dotenv").config();
-
-const fs = require("fs");
 const app = express();
-const port = 3000;
+app.use(express.json());
+app.use(express.static('FITNESS_TRACKER'));
+
 const pool = new Pool({
-  user: "ijrme",
-  database: "people",
-  password: "0246810a",
-  port: 3000,
-});
-
-app.use(express.json())
-app.use(express.static('public'));
-
-console.log(process.env)
-
-app.get("/people", (req, res) => {
-  pool.query("SELECT * FROM users", (err, data) => {
-    if (err) throw err;
-    res.send(data.rows[0])
-  })
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 })
 
+
+
+
+app.get("/people", (req, res) => {
+  pool.query("SELECT * FROM users", (err, results) => {
+    if (err) throw err;
+    res.send(result.rows)
+  })
+})
+app.get("/people/:index", (req, res) => {
+  const id = req.params.index;
+  pool.query("SELECT * FROM users WHERE id = $1", [index], (err, results) => {
+    if (err) throw err
+    res.send(results.rows[id])
+  })
+})
 
 app.post("/people", (req, res) => {
   const { id } = req.params;
