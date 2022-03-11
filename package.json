@@ -1,0 +1,24 @@
+{
+  "name": "fitness_tracker",
+  "version": "1.0.0",
+  "description": "MVP Project",
+  "main": "confi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IMedellin/fitness_tracker.git"
+  },
+  "author": "Isaias Medellinn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IMedellin/fitness_tracker/issues"
+  },
+  "homepage": "https://github.com/IMedellin/fitness_tracker#readme",
+  "dependencies": {
+    "modules": "^0.4.0",
+    "node": "^17.5.0"
+  }
+}
