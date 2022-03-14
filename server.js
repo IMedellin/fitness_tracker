@@ -2,7 +2,10 @@ const express = require('express');
 const { Pool } = require('pg');
 const app = express();
 const pool = new Pool({
-  database: "people"
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 })
 require("dotenv").config();
 app.use(express.json());
