@@ -1,10 +1,13 @@
 const express = require('express');
-const pg = require('pg');
 const { Pool } = require('pg');
-require("dotenv").config();
 const app = express();
+const pool = new Pool({
+  database: "people"
+})
+require("dotenv").config();
 app.use(express.json());
 app.use(express.static('FITNESS_TRACKER'));
+
 
 app.get("/people", (req, res) => {
   pool.query("SELECT * FROM users", (err, results) => {
