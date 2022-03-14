@@ -6,20 +6,10 @@ const app = express();
 app.use(express.json());
 app.use(express.static('FITNESS_TRACKER'));
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-})
-
-
-
-
 app.get("/people", (req, res) => {
   pool.query("SELECT * FROM users", (err, results) => {
     if (err) throw err;
-    res.send(result.rows)
+    res.send(results.rows)
   })
 })
 app.get("/people/:index", (req, res) => {
