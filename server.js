@@ -10,6 +10,7 @@ const pool = new Pool({
   } : false
 })
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 // app.use('/css', express.static(__dirname + './public/styles'))
 
