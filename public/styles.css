@@ -1,0 +1,40 @@
+.background{
+  background-color: #ecc19c;
+}
+.Header{
+  height: 100px;
+  background-color: #1e847f;
+}
+
+.sidenav{
+  height: 100%;
+  width: 0;
+  position:fixed;
+  z-index: 1;
+  top:0;
+  left: 0;
+  
+}
+
+.page{
+  height: 770px;
+  width: 1000px;
+  margin: 0 auto;
+  border: 2px solid red;
+  background-color: #726e6e
+}
+
+.workout_container{
+  float: left;
+  width: 31%;
+  margin: 20px 1.15%;
+  height: 160px;
+  background-color: #000000; 
+}
+
+.footer{
+  clear: both;
+  height: 200px;
+  background-color: #13847f;
+  justify-content: space-evenly;
+}

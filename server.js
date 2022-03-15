@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require('express');
 const { Pool } = require('pg');
+const path = require('path')
 const app = express();
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -10,12 +11,12 @@ const pool = new Pool({
 })
 app.use(express.json());
 app.use(express.static('public'));
-app.use('/css', express.static(__dirname + 'public/css'))
+// app.use('/css', express.static(__dirname + './public/styles'))
 
 app.get("/people", (req, res) => {
   pool.query("SELECT * FROM users", (err, results) => {
     if (err) throw err;
-    res.send(results.rows)
+    res.sendFile(path.join(__dirname, './public/index.html'))
   })
 })
 app.get("/people/:index", (req, res) => {
