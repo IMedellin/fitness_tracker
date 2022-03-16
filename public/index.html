@@ -29,12 +29,14 @@
 <body>
   <div class="background">
     <div class='Header'>
-      <h2>My Fitness Tracker</h2>
+      <h2>IRON BLOOD</h2>
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;Dashboard</span>
     </div>
     <div class="page" id="#mainpage">
-      <div class="User_data">Please enter your information
-        <form method="post" id="form1">
+      <div class="User_data">
+        <a href="#" id="login">Sign in</a>or
+        <a href="#" id="newuser">Create a new User</a>
+        <form method="post" id="createuser">
           <label for="name">First name:</label>
           <input type="text" id="fname" name="name">
           <label for="age">Age</label>
@@ -43,8 +45,14 @@
           <input type="text" id="weight" name="weight">
           <label for="Height">Height</label>
           <input type="text" id="height" name="height">
-          <input type="submit">
+          <input type="submit" id="createbtn">
         </form>
+        <form method="get" id="loginuser">
+          <label for="name">First name:</label>
+          <input type="text" id="loginfname" name="name">
+          <input type="submit" id="loginbtn">
+        </form>
+        <div id="mydata">placeholder for data</div>
       </div>
     </div>
     <div id="mySidenav" class="sidenav">

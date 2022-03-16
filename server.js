@@ -22,7 +22,7 @@ app.get("/people", (req, res) => {
 })
 app.get("/people/:index", (req, res) => {
   const index = req.params.index;
-  pool.query("SELECT * FROM users WHERE id = $1", [index], (err, results) => {
+  pool.query("SELECT * FROM users WHERE name = $1", [index], (err, results) => {
     if (err) throw err
     res.send(results.rows[0])
   })
@@ -31,7 +31,7 @@ app.get("/people/:index", (req, res) => {
 app.post("/people", (req, res) => {
   const { id } = req.params;
   const { name, age, weight, height } = req.body;
-  pool.query("INSERT INTO users (name, age, weight, height) VALUES ($1, $2, $3, $4) RETURNING *;", [name, age, weight, height]).then((result) => res.send(result.rows[0]));
+  pool.query("INSERT INTO users (name, age, weight, height) VALUES ($1, $2, $3, $4) RETURNING *", [name, age, weight, height]).then((result) => res.send(result.rows[0]));
 })
 
 
