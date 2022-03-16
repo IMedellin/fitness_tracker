@@ -24,6 +24,7 @@ $(document).ready(function () {
 $(document).ready(function () {
   $("#login").click(function () {
     $("#loginuser").toggle();
+    $("#createuser").hide();
   })
 })
 
@@ -55,11 +56,18 @@ $("#loginuser").on("submit", function (e) {
   e.preventDefault();
   const data = new FormData(e.target);
   const name = data.get('name')
-  console.log(data.get('name'));
+  console.log(name);
   $.get(`people/${name}`, function (data) {
-    $("#mydata").html(data)
-    console.log(data)
-  })
+    let fname = data.name;
+    let age = data.age;
+    let weight = data.weight;
+    let height = data.height;
+    $("#mydata")
+      .append(`${fname} ${age} ${weight} ${height}`) // John
+
+  }, "json");
+  console.log(data)
 })
+
 
 
