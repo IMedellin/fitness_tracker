@@ -17,7 +17,7 @@ app.use(express.static('public'));
 app.get("/people", (req, res) => {
   pool.query("SELECT * FROM users", (err, results) => {
     if (err) throw err;
-    res.sendFile(path.join(__dirname, './public/index.html'))
+    res.send(results.rows)
   })
 })
 app.get("/people/:index", (req, res) => {
@@ -30,8 +30,8 @@ app.get("/people/:index", (req, res) => {
 
 app.post("/people", (req, res) => {
   const { id } = req.params;
-  const { name, age } = req.body;
-  pool.query("INSERT INTO users (name, age, weight, height) VALUES ($1, $2, $3, $4) RETURNING *;", [name, age, weight, height]).then((result) => res.send(result.row[0]));
+  const { name, age, weight, height } = req.body;
+  pool.query("INSERT INTO users (name, age, weight, height) VALUES ($1, $2, $3, $4) RETURNING *;", [name, age, weight, height]).then((result) => res.send(result.rows[0]));
 })
 
 
