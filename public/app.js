@@ -9,6 +9,8 @@ function openNav() {
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
+
+
 //function to hide and show create user form 
 $(document).ready(function () {
   $("#newuser").click(function () {
@@ -20,6 +22,7 @@ $(document).ready(function () {
   $("#createuser").hide();
 });
 
+
 //function to hide and show sign in form
 $(document).ready(function () {
   $("#login").click(function () {
@@ -27,9 +30,13 @@ $(document).ready(function () {
     $("#createuser").hide();
   })
 })
-
 $(document).ready(function () {
   $("#loginuser").hide();
+})
+
+//Hide Log new weight
+$(document).ready(function () {
+  $("#addlog").hide();
 })
 
 //Create user form and post request to database
@@ -51,7 +58,7 @@ $("#createuser").on("submit", function (e) {
   })
 });
 
-
+//Login a user
 $("#loginuser").on("submit", function (e) {
   e.preventDefault();
   const data = new FormData(e.target);
@@ -63,11 +70,21 @@ $("#loginuser").on("submit", function (e) {
     let weight = data.weight;
     let height = data.height;
     $("#mydata")
-      .append(`${fname} ${age} ${weight} ${height}`) // John
-
+    $("#tblname").append(`${fname}`)
+    $("#tblage").append(`${age}`)
+    $("#tblweight").append(`${weight}`)
+    $("#tblheight").append(`${height}`)
   }, "json");
-  console.log(data)
+  $("#loginuser").hide();
+  $("#addlog").show();
 })
 
+function clearTable() {
+  const parent = document.getElementById("datatbl");
+
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
 
 
